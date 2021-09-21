@@ -1,5 +1,4 @@
 var global = require('../internals/global');
-var DOMIterables = require('../internals/dom-iterables');
 var DOMTokenListPrototype = require('../internals/dom-token-list-prototype');
 var forEach = require('../internals/array-for-each');
 var createNonEnumerableProperty = require('../internals/create-non-enumerable-property');
@@ -13,8 +12,6 @@ var handlePrototype = function (CollectionPrototype) {
   }
 };
 
-for (var COLLECTION_NAME in DOMIterables) {
-  handlePrototype(global[COLLECTION_NAME] && global[COLLECTION_NAME].prototype);
-}
-
+handlePrototype(global['NodeList'] && global['NodeList'].prototype);
+handlePrototype(global['DOMTokenList'] && global['DOMTokenList'].prototype);
 handlePrototype(DOMTokenListPrototype);
